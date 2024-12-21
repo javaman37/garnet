@@ -31,12 +31,19 @@ public class CustomUserDetails implements UserDetails {
 		return user.getPassword();
 	}
 	
-
+//
+//	@Override
+//	public Collection<? extends GrantedAuthority> getAuthorities() {
+//		return Collections.singletonList(new SimpleGrantedAuthority(user.getRole()));
+//
+//	}
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return Collections.singletonList(new SimpleGrantedAuthority(user.getRole()));
-
+	    Collection<? extends GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority(user.getRole()));
+	    System.out.println("User Authorities: " + authorities); // Log quyền của user
+	    return authorities;
 	}
+
 
 	
 
