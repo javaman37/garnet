@@ -1,4 +1,4 @@
-package com.max.garnet.entities;
+package com.max.garnet.models.entities;
 
 import lombok.*;
 import java.math.BigDecimal;
@@ -10,8 +10,8 @@ import jakarta.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "transactions")
-public class Transaction {
+@Table(name = "BETS")
+public class Bet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,10 +20,14 @@ public class Transaction {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @Column(name = "type")
-    private String type;
+    @Column(name = "game_type")
+    private String gameType;
 
-    private BigDecimal amount;
+    private BigDecimal bet_amount;
+
+    private BigDecimal win_amount;
+
+    private BigDecimal rolling;
 
     @Column(updatable = false)
     private Timestamp created_at;

@@ -1,0 +1,13 @@
+spring:
+    application:
+        name: garnet
+    datasource:
+        url: jdbc:mysql://localhost:3306/admin-project-database?allowPublicKeyRetrieval=true&useSSL=false
+        username: springstudent
+        password: springstudent
+
+#security config
+garnet:
+    app:
+        jwtSecret: 1232DWDERR43R343TRFFT3R455657Y5YTHBEGCD4D87CBE734HHEF98U4FHYH5
+        jwtExpirationMs: 3600000
