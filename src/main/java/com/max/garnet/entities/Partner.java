@@ -1,4 +1,4 @@
-package com.max.garnet.models.entities;
+package com.max.garnet.entities;
 
 import lombok.*;
 import java.math.BigDecimal;
@@ -11,7 +11,7 @@ import jakarta.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "PARTNERS")
+@Table(name = "partners")
 public class Partner {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

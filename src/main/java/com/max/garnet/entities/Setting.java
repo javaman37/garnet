@@ -1,4 +1,4 @@
-package com.max.garnet.models.entities;
+package com.max.garnet.entities;
 
 import lombok.*;
 import jakarta.persistence.*;
@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "SETTINGS")
+@Table(name = "settings")
 public class Setting {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

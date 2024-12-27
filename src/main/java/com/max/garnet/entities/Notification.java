@@ -1,4 +1,4 @@
-package com.max.garnet.models.entities;
+package com.max.garnet.entities;
 
 import lombok.*;
 import jakarta.persistence.*;
@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "NOTIFICATIONS")
+@Table(name = "notifications")
 public class Notification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
