@@ -22,4 +22,7 @@ public interface UserDAO extends JpaRepository<User, Long> {
 	           "AND (:partnerId IS NULL OR p.id = :partnerId)")
 	Page<UserDTO> findUsersByFilterAndPartner(String filter, Long partnerId, Pageable pageable);
 
+	@Query("SELECT u FROM User u WHERE u.approvalStatus IS NULL")
+	Page<User> findPendingUsers(Pageable pageable);
+
 }

@@ -1,5 +1,7 @@
 package com.max.garnet.dto;
 
+import java.math.BigDecimal;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,5 +18,8 @@ public class UserDTO {
 	    private Double balance;
 	    private Double rolling;
 	    private String partnerName;
+	    private BigDecimal beforeRepayment;
+	    private BigDecimal moneyHeld;
+	    
 
 }

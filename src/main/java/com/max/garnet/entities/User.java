@@ -18,6 +18,7 @@ public class User {
     private Long id;
 
     private String username;
+    private String nickname;
 
     private String password;
 
@@ -31,4 +32,20 @@ public class User {
 
     @Column(updatable = false)
     private Timestamp created_at;
+    
+    @Column(name = "before_repayment")
+    private BigDecimal beforeRepayment;
+
+    @Column(name = "money_held")
+    private BigDecimal moneyHeld;
+    
+    @ManyToOne
+    @JoinColumn(name = "partner_id", referencedColumnName = "id")
+    private Partner partner;
+
+    @ManyToOne
+    @JoinColumn(name = "affiliation_id", referencedColumnName = "id")
+    private Affiliation affiliation;
+
+	
 }
