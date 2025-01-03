@@ -46,6 +46,12 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "affiliation_id", referencedColumnName = "id")
     private Affiliation affiliation;
+    
+    @Column(name = "phone_number")
+    private String phoneNumber; 
+
+    @Column(name = "situation")
+    private String situation; 
 
 	
 }

@@ -24,5 +24,8 @@ public interface UserDAO extends JpaRepository<User, Long> {
 
 	@Query("SELECT u FROM User u WHERE u.approvalStatus IS NULL")
 	Page<User> findPendingUsers(Pageable pageable);
+	
+	@Query("SELECT u FROM User u WHERE u.role = 'CONNECTOR'")
+    Page<User> findAllConnectors(Pageable pageable);
 
 }

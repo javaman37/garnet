@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.max.garnet.dto.ConnectorDTO;
 import com.max.garnet.dto.PendingUserDTO;
 import com.max.garnet.dto.UserDTO;
 import com.max.garnet.service.UserService;
@@ -22,6 +23,8 @@ public class UserController {
 	
 	 @Autowired
 	    private UserService userService;
+	 
+	 
 	 
 	 @GetMapping("/list")
 	    public ResponseEntity<Page<UserDTO>> getUsers(
@@ -37,6 +40,12 @@ public class UserController {
 	    public ResponseEntity<Page<PendingUserDTO>> getPendingUsers(Pageable pageable) {
 	        Page<PendingUserDTO> pendingUsers = userService.getPendingUsers(pageable);
 	        return ResponseEntity.ok(pendingUsers);
+	    }
+	 
+	 @GetMapping("/connection")
+	    public ResponseEntity<Page<ConnectorDTO>> getAllConnectors(Pageable pageable) {
+	        Page<ConnectorDTO> connectors = userService.getAllConnectors(pageable);
+	        return ResponseEntity.ok(connectors);
 	    }
 
 }

@@ -47,6 +47,31 @@ LOCK TABLES `adjustments` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `affiliations`
+--
+
+DROP TABLE IF EXISTS `affiliations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `affiliations` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `description` text,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `affiliations`
+--
+
+LOCK TABLES `affiliations` WRITE;
+/*!40000 ALTER TABLE `affiliations` DISABLE KEYS */;
+/*!40000 ALTER TABLE `affiliations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `bets`
 --
 
@@ -74,6 +99,34 @@ CREATE TABLE `bets` (
 LOCK TABLES `bets` WRITE;
 /*!40000 ALTER TABLE `bets` DISABLE KEYS */;
 /*!40000 ALTER TABLE `bets` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `logs`
+--
+
+DROP TABLE IF EXISTS `logs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `logs` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `user_id` bigint NOT NULL,
+  `game_name` varchar(100) NOT NULL,
+  `timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `result` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `logs_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `logs`
+--
+
+LOCK TABLES `logs` WRITE;
+/*!40000 ALTER TABLE `logs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `logs` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -116,8 +169,12 @@ CREATE TABLE `partners` (
   `parent_id` bigint DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `affiliation_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `parent_id` (`parent_id`),
+  KEY `fk_affiliation` (`affiliation_id`),
+  KEY `fk_parent` (`parent_id`),
+  CONSTRAINT `fk_affiliation` FOREIGN KEY (`affiliation_id`) REFERENCES `affiliations` (`id`),
+  CONSTRAINT `fk_parent` FOREIGN KEY (`parent_id`) REFERENCES `partners` (`id`),
   CONSTRAINT `partners_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `partners` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -201,8 +258,19 @@ CREATE TABLE `users` (
   `balance` decimal(18,2) DEFAULT '0.00',
   `rolling` decimal(18,2) DEFAULT '0.00',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `nickname` varchar(100) DEFAULT NULL,
+  `partner_id` bigint DEFAULT NULL,
+  `before_repayment` decimal(18,2) DEFAULT NULL,
+  `money_held` decimal(18,2) DEFAULT NULL,
+  `phone_number` varchar(20) DEFAULT NULL,
+  `situation` varchar(50) DEFAULT NULL,
+  `affiliation_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`)
+  UNIQUE KEY `username` (`username`),
+  KEY `fk_partner` (`partner_id`),
+  KEY `fk_user_affiliation` (`affiliation_id`),
+  CONSTRAINT `fk_partner` FOREIGN KEY (`partner_id`) REFERENCES `partners` (`id`),
+  CONSTRAINT `fk_user_affiliation` FOREIGN KEY (`affiliation_id`) REFERENCES `affiliations` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -212,7 +280,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin1','$2a$12$dSEtJ1V4G.BysPKj8./XR.pKUG6EBIwKBinxIkb0GZz/n7ZxLNgBG',NULL,'ADMIN',0.00,0.00,'2024-12-20 11:29:26');
+INSERT INTO `users` VALUES (1,'admin1','$2a$12$dSEtJ1V4G.BysPKj8./XR.pKUG6EBIwKBinxIkb0GZz/n7ZxLNgBG',NULL,'ADMIN',0.00,0.00,'2024-12-20 11:29:26',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -225,4 +293,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-12-22 14:18:25
+-- Dump completed on 2025-01-03 21:05:35
