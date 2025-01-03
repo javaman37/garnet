@@ -1,121 +1,144 @@
-1 API:domain Management:
+
+------------------------------------------------------------
+3.API Setting & auhthentication :
+
+1- /config/fundpw (current exchange password)
+2- /auth/login
+3- /auth/logout
+---------------------------------------------
+
+4.API membeship management:
+
+1- user/lists (member list)
+2- user/pending(approval waitlist)
+3- user/connection(conector list)
+4- user/gift( gift payment details)
+5- user/maxwin( maximum member history)
+6- user/cheating (cheating member history)
+**  Search
+7- /user/detail?section=asset&user_id=1 (Manager money change history)
+8- /user/lists?keyword=a (Search usser) 
+9- /user/lists?keyword=&date_from=2024-12-31&date_to=2024-12-31&page=1 (search user) 
+
+10- /user/detail?section=info&user_id=2 (user deatail )
+11- /user/detail?section=default&user_id=2 (Recent login history)
+12- /user/detail?section=memo&user_id=2(note)
+13- /user/detail?section=deposit1&user_id=2 (History of recharge)
+14- /user/detail?section=withdraw1&user_id=2(History of currency exchange)
+15- /user/detail?section=deposit10&user_id=2(Details of payment received)
+16- /user/detail?section=withdraw10&user_id=2 (Details of egg recovery)
+17- /user/detail?section=launch&user_id=2 (Game playlist)
+18- /user/detail?section=game&user_id=2 (Game betting details)
+19- /user/detail?section=limitgame_play&user_id=2 (Limited game betting details)
+20- /user/detail?section=pragmatic&user_id=2 (pragmatic)
+21- /user/detail?section=userloginfo&user_id=2 (user login info)
+----------------------------------------------------------------------------------------
+
+5.API systems:
+
+1- /system/notice (Announcement)
+2- /system/bank (Set up deposit account)
+3- /system/councel (1:1 inquiry (waiting))
+4- /system/councel/all (1:1 inquiry (All))
+5- /system/councel/macro (  1:1 macro management)
+6- /system/account ( List of bank account changes)
+7- /system/ip (IP block list)
+8- /system/block (Blocked members and partners) 
+9- /system/loginlog (Check login history)
+10- /system/limit_provider (game company restrictions)
+11- /system/limit_point (Payment & collection authority control)
+12- /system/max_win_value (Change the maximum winning alarm amount)
+13- /system/userovercharge ( Overcharge confirmation menu)
+14- /system/send_memo (Send a message)
+
+------------------------------------------------------------
+6.API pre-recharge: 
+
+1- /krw/deposit/all (charging history)
+2- /krw/withdraw/all
+3- /krw/deposit/deny(Charging refusal details)
+4- /krw/withdraw/deny (Currency exchange rejection details)
+5- /krw/daily (Before recharging by date)
+6- /krw/affliate (Fund transfer between partners)
+7- /krw/headoffice (Headquarters partner fund transfer)
+-**  Search
+8- /krw/deposit/all?agency_id=-1&date_from=2024-12-31&date_to=2024-12-31&search_type=username&search_keyword= (search agency deposit)
+9- /krw/withdraw/all?agency_id=-1&date_from=2024-12-31&date_to=2024-12-31&search_type=username&search_keyword=(search agency withdraw)
+10- /krw/daily?date_from=2024-12-01&date_to=2024-12-31 (search )
+-------------------------------------------------------------
+7.API partner Management:
+
+1- affliate/lists (full partner list)
+2- affliate/center/lists2 (sub headquter list)
+3- affliate/branch/lists2 (branch list) 
+4- affliate/office/lists2( Distributor list)
+5- affliate/agency/lists2  (Store list)
+6- affliate/transfer (partner transfer money)
+7- affliate/transfer2 (Partner - transfer of refund between members)
+8- affliate/admin/partner(Master - transfer of eggs between partners)
+9- affliate/admin/transfer (Master- transfer of messages between members)
+** Search
+10- /affliate/lists?agency_id=-1&date_from=2024-12-31&date_to=2024-12-31
+11- /affliate/center/lists2?keyword=&date_from=2024-12-31&date_to=2024-12-31
+12- /affliate/branch/lists2?keyword=&date_from=2024-12-31&date_to=2024-12-31
+13- /affliate/office/lists2?keyword=&date_from=2024-12-31&date_to=2024-12-31
+14- /affliate/agency/lists2?keyword=&date_from=2024-12-31&date_to=2024-12-3
+15- /affliate/transfer?date_from=2024-12-31&date_to=2024-12-31&agency_id=-1
+16- /affliate/transfer2?keyword=&date_from=2024-12-31&date_to=2024-12-31&agency_id=-1
+17- /affliate/admin/partner?keyword=&date_from=2024-12-31&date_to=2024-12-31
+18- /affliate/admin/transfer?keyword=undefined&date_from=2024-12-31&date_to=2024-12-31
+----------------------------------------------------------------------------------------
+
+8. API Betting and rolling status:
+
+1- /betting/slot/lists (betting status -Slots)
+2- /betting/casino/lists (betting status -Casino)
+3- /betting/all/lists (betting status -SL+KA)
+4- /betting/loss (Loss Adjustment (Sleep))
+5- /betting/lossr (loss recovery)
+6- /betting/limitgameplay/limitgameplay_list(Limited game betting status)
+7- /betting/quickslot/quicklists (Quick Bet Status (Slots))
+8- /betting/quickcasino/quicklists( Quick Betting Status (Casino))
+9- /betting/quickall/quicklists Quick Betting Status (SL+KA)
+**  Search
+10- /betting/slot/lists?date_from=2024-12-31&date_to=2024-12-31 (search slots)
+11- /betting/casino/lists?date_from=2024-12-31&date_to=2024-12-31&username=undefined&min_win=undefined(search casion)
+12- /betting/quickall/quicklists?date_from=2024-12-31&date_to=2024-12-31 
+-----------------------------------------------------------------
+9. Game record statistics:
+
+1- /stat/daily/total (Betting status by day)
+2- /stat/daily/game (By day and by game)
+3- /stat/daily/user (By date, by user)
+4- /stat/daily/center (By date and by sub-headquarters)
+5- /stat/daily/office (Total classification by date)
+6- /stat/daily/agency (By store by date)
+7- /stat/total/game(by all games)
+8- /stat/total/user( By total users)
+9- /stat/daily/loss(Loss status by day_
+10- /stat/daily/centerloss (Loss status by sub-headquarters)
+11- /stat/daily/branchloss (Loss status by branch)
+12- /stat/daily/branchloss (Loss status by branch)
+13- /stat/daily/agencyloss (Loss status by store)
+14- /stat/daily/dauslot (dau slot)
+15- /stat/daily/daucasino(DAU Casino)
+--------------------------------------------------------------------
+10.API Lujing settlement:
+
+1- /losingc52/headoffice/slot (Losing settlement (slot))
+2- /losingc52/headoffice/casino( Lujing settlement (Casino))
+**  Search
+3- /losingc52/headoffice/slot?date_from=2024-12-31&date_to=2024-12-31 (Slot Search)
+4- /losingc52/headoffice/casino?date_from=2024-12-31&date_to=2024-12-31(Casino search) 
+---------------------------------------------------------------------
+11 API:domain Management:
 
 1-domain/lists
 2-domain/notice
-------------------------------------------------------------
-2.API pre-recharge: 
 
-3- /krw/deposit/all (charging history)
-4- /krw/withdraw/all
-5- /krw/deposit/deny(Charging refusal details)
-6- /krw/withdraw/deny (Currency exchange rejection details)
-7- /krw/daily (Before recharging by date)
-8- /krw/affliate (Fund transfer between partners)
-9- /krw/headoffice (Headquarters partner fund transfer)
--**  Search
-10- /krw/deposit/all?agency_id=-1&date_from=2024-12-31&date_to=2024-12-31&search_type=username&search_keyword= (search agency deposit)
-11- /krw/withdraw/all?agency_id=-1&date_from=2024-12-31&date_to=2024-12-31&search_type=username&search_keyword=(search agency withdraw)
-12- /krw/daily?date_from=2024-12-01&date_to=2024-12-31 (search )
--------------------------------------------------------------
-3.API partner Management:
 
-13- affliate/lists (full partner list)
-14- affliate/center/lists2 (sub headquter list)
-15- affliate/branch/lists2 (branch list) 
-16- affliate/office/lists2( Distributor list)
-17- affliate/agency/lists2  (Store list)
-18- affliate/transfer (partner transfer money)
-19- affliate/transfer2 (Partner - transfer of refund between members)
-20- affliate/admin/partner(Master - transfer of eggs between partners)
-21- affliate/admin/transfer (Master- transfer of messages between members)
-** Search
-22- /affliate/lists?agency_id=-1&date_from=2024-12-31&date_to=2024-12-31
-23- /affliate/center/lists2?keyword=&date_from=2024-12-31&date_to=2024-12-31
-24- /affliate/branch/lists2?keyword=&date_from=2024-12-31&date_to=2024-12-31
-25- /affliate/office/lists2?keyword=&date_from=2024-12-31&date_to=2024-12-31
-26- /affliate/agency/lists2?keyword=&date_from=2024-12-31&date_to=2024-12-3
-27- /affliate/transfer?date_from=2024-12-31&date_to=2024-12-31&agency_id=-1
-28- /affliate/transfer2?keyword=&date_from=2024-12-31&date_to=2024-12-31&agency_id=-1
-29- /affliate/admin/partner?keyword=&date_from=2024-12-31&date_to=2024-12-31
-30- /affliate/admin/transfer?keyword=undefined&date_from=2024-12-31&date_to=2024-12-31
-------------------------------------------------------------------------
-4.API membeship management:
-
-31- user/lists (member list)
-32- user/pending(approval waitlist)
-33- user/connection(conector list)
-34- user/gift( gift payment details)
-35- user/maxwin( maximum member history)
-36- user/cheating (cheating member history)
-**  Search
-37- /user/detail?section=asset&user_id=1 (Manager money change history)
-37- /user/lists?keyword=a (Search usser) 
-39- /user/lists?keyword=&date_from=2024-12-31&date_to=2024-12-31&page=1 (search user) 
-40- /user/detail?section=info&user_id=2 (user deatail )
-- ----------------------------------------------------------
-5. API Betting and rolling status:
-41- /betting/slot/lists (betting status -Slots)
-42- /betting/casino/lists (betting status -Casino)
-43- /betting/all/lists (betting status -SL+KA)
-44- /betting/loss (Loss Adjustment (Sleep))
-45- /betting/lossr (loss recovery)
-46- /betting/limitgameplay/limitgameplay_list(Limited game betting status)
-47- /betting/quickslot/quicklists (Quick Bet Status (Slots))
-48- /betting/quickcasino/quicklists( Quick Betting Status (Casino))
-49- /betting/quickall/quicklists Quick Betting Status (SL+KA)
-**  Search
-50- /betting/slot/lists?date_from=2024-12-31&date_to=2024-12-31 (search slots)
-51- /betting/casino/lists?date_from=2024-12-31&date_to=2024-12-31&username=undefined&min_win=undefined(search casion)
-53- /betting/quickall/quicklists?date_from=2024-12-31&date_to=2024-12-31 
------------------------------------------------------------------
-6. Game record statistics:
-
-53- /stat/daily/total (Betting status by day)
-54- /stat/daily/game (By day and by game)
-55- /stat/daily/user (By date, by user)
-56- /stat/daily/center (By date and by sub-headquarters)
-57- /stat/daily/office (Total classification by date)
-58- /stat/daily/agency (By store by date)
-59- /stat/total/game(by all games)
-60- /stat/total/user( By total users)
-61- /stat/daily/loss(Loss status by day_
-62- /stat/daily/centerloss (Loss status by sub-headquarters)
-63- /stat/daily/branchloss (Loss status by branch)
-64- /stat/daily/branchloss (Loss status by branch)
-64- /stat/daily/agencyloss (Loss status by store)
-66- /stat/daily/dauslot (dau slot)
-67- /stat/daily/daucasino(DAU Casino)
---------------------------------------------------------------------
-7.API Lujing settlement:
-
-68- /losingc52/headoffice/slot (Losing settlement (slot))
-69- /losingc52/headoffice/casino( Lujing settlement (Casino))
-**  Search
-70- /losingc52/headoffice/slot?date_from=2024-12-31&date_to=2024-12-31 (Slot Search)
-71- /losingc52/headoffice/casino?date_from=2024-12-31&date_to=2024-12-31(Casino search) 
----------------------------------------------------------------------
-8.API Setting & auhthentication :
-
-72- /config/fundpw (current exchange password)
-73- /auth/login
-74- /auth/logout
----------------------------------------------
-10.API systems:
-
-75- /system/notice (Announcement)
-76- /system/bank (Set up deposit account)
-77- /system/councel (1:1 inquiry (waiting))
-78- /system/councel/all (1:1 inquiry (All))
-79- /system/councel/macro (  1:1 macro management)
-80- /system/account ( List of bank account changes)
-81- /system/ip (IP block list)
-82- /system/block (Blocked members and partners) 
-83- /system/loginlog (Check login history)
-84- /system/limit_provider (game company restrictions)
-85- /system/limit_point (Payment & collection authority control)
-86- /system/max_win_value (Change the maximum winning alarm amount)
-87- /system/userovercharge ( Overcharge confirmation menu)
-88- /system/send_memo (Send a message)
+----------------------------------------------------------------------------------------------------------------------
+Total APIs: 99
 
 
 
