@@ -18,11 +18,13 @@
 **  Search
 7- /user/detail?section=asset&user_id=1 (Manager money change history)
 8- /user/lists?keyword=a (Search usser) 
+
 9- /user/lists?keyword=&date_from=2024-12-31&date_to=2024-12-31&page=1 (search user) 
 
 10- /user/detail?section=info&user_id=2 (user deatail )
 11- /user/detail?section=default&user_id=2 (Recent login history)
 12- /user/detail?section=memo&user_id=2(note)
+
 13- /user/detail?section=deposit1&user_id=2 (History of recharge)
 14- /user/detail?section=withdraw1&user_id=2(History of currency exchange)
 15- /user/detail?section=deposit10&user_id=2(Details of payment received)
