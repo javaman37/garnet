@@ -23,6 +23,7 @@ public class Affiliation {
     private String name;
 
     private String description;
+    private String type;
 
     @ManyToOne
     @JoinColumn(name = "parent_id")

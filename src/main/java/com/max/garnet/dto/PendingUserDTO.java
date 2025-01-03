@@ -1,14 +1,16 @@
 package com.max.garnet.dto;
 
-import java.security.Timestamp;
+import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class PendingUserDTO {
     private Long connectionId;
     private String nickname;
@@ -17,8 +19,8 @@ public class PendingUserDTO {
     private String affiliatedBranch;
     private String affiliatedDistributor;
     private String affiliatedStore;
-    private Timestamp registrationDate;
+    private LocalDateTime registrationDate;
     private String phoneNumber;
-    private Boolean approvalStatus;
+    private Boolean approval;
     private String detailsUrl;
 }

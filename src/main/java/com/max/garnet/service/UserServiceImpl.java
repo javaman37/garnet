@@ -14,6 +14,7 @@ import com.max.garnet.dao.UserDAO;
 import com.max.garnet.dto.ConnectorDTO;
 import com.max.garnet.dto.PendingUserDTO;
 import com.max.garnet.dto.UserDTO;
+import com.max.garnet.entities.Affiliation;
 import com.max.garnet.entities.User;
 @Service
 public class UserServiceImpl implements UserService {
@@ -35,20 +36,27 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Page<PendingUserDTO> getPendingUsers(Pageable pageable) {
 		 Page<User> users = userDAO.findPendingUsers(pageable);
-	        return users.map(user -> new PendingUserDTO(
-	            user.getId(),
-	            user.getNickname(),
-	            user.getSituation(),
-	            user.getAffiliatedHeadquarters(),
-	            user.getAffiliatedBranch(),
-	            user.getAffiliatedDistributor(),
-	            user.getAffiliatedStore(),
-	            user.getRegistrationDate(),
-	            user.getPhoneNumber(),
-	            user.getSituation(),
-	            "/user/details/" + user.getId()
-	        ));
+	        return users.map(user ->  PendingUserDTO.builder()
+	        		.connectionId(user.getId())
+	                .nickname(user.getNickname())
+	                .situation(user.getSituation())
+	                .affiliatedHeadquarters(getAffiliationByType(user.getAffiliation(), "Headquarters"))
+	                .affiliatedBranch(getAffiliationByType(user.getAffiliation(), "Branch"))
+	                .affiliatedDistributor(getAffiliationByType(user.getAffiliation(), "Distributor"))
+	                .affiliatedStore(getAffiliationByType(user.getAffiliation(), "Store"))
+	                .registrationDate(user.getCreated_at())
+	                .phoneNumber(user.getPhoneNumber())
+	                .approval(false) // Giả sử approval mặc định là false,cần sửa lại sau khi hỏi sếp
+	                .detailsUrl("/user/details/" + user.getId())
+	                .build()
+	        );
 	    }
+	private String getAffiliationByType(Affiliation affiliation, String type) {
+	    if (affiliation != null && affiliation.getType().equalsIgnoreCase(type)) {
+	        return affiliation.getName();
+	    }
+	    return "N/A"; // Default nếu không có thông tin
+	}
 
 	
 	
@@ -79,7 +87,7 @@ public Page<ConnectorDTO> getAllConnectors(Pageable pageable) {
             winningSlot,
             bettingCasino,
             winningCasino,
-            "SLOT, CASINO",
+            "SLOT, CASINO",// cần sửa lại sau khi hỏi sếp
             "/user/details/" + user.getId()
         );
     });

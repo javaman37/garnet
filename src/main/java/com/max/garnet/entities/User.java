@@ -2,7 +2,7 @@ package com.max.garnet.entities;
 
 import lombok.*;
 import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.*;
 
@@ -31,7 +31,7 @@ public class User {
     private BigDecimal rolling = BigDecimal.ZERO;
 
     @Column(updatable = false)
-    private Timestamp created_at;
+    private LocalDateTime created_at;
     
     @Column(name = "before_repayment")
     private BigDecimal beforeRepayment;
