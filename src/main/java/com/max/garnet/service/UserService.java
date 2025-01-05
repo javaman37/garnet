@@ -8,6 +8,7 @@ import com.max.garnet.dto.PendingUserDTO;
 import com.max.garnet.dto.UserDTO;
 
 public interface UserService {
+	
 	Page<UserDTO> getUsers(Pageable pageable, String filter, Long partnerId);
 	
 	

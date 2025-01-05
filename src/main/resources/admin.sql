@@ -58,8 +58,12 @@ CREATE TABLE `affiliations` (
   `name` varchar(100) NOT NULL,
   `description` text,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `type` varchar(50) NOT NULL,
+  `parent_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_affiliation_parent` (`parent_id`),
+  CONSTRAINT `fk_affiliation_parent` FOREIGN KEY (`parent_id`) REFERENCES `affiliations` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,6 +72,7 @@ CREATE TABLE `affiliations` (
 
 LOCK TABLES `affiliations` WRITE;
 /*!40000 ALTER TABLE `affiliations` DISABLE KEYS */;
+INSERT INTO `affiliations` VALUES (1,'Head Office','Main headquarters','2025-01-03 19:08:32','Headquarters',NULL),(2,'Branch A','Branch A under headquarters','2025-01-03 19:08:32','Branch',NULL),(3,'Distributor A','Distributor under Branch A','2025-01-03 19:08:32','Distributor',NULL),(4,'Store A','Store under Distributor A','2025-01-03 19:08:32','Store',NULL);
 /*!40000 ALTER TABLE `affiliations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -293,4 +298,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-03 21:05:35
+-- Dump completed on 2025-01-06  2:47:50
