@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.max.garnet.dto.ConnectorDTO;
+import com.max.garnet.dto.GiftPaymentDTO;
 import com.max.garnet.dto.PendingUserDTO;
 import com.max.garnet.dto.UserDTO;
+import com.max.garnet.service.GiftPaymentService;
 import com.max.garnet.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -22,7 +24,9 @@ import lombok.RequiredArgsConstructor;
 public class UserController {
 	
 	 @Autowired
-	    private UserService userService;
+	 private UserService userService;
+	 @Autowired
+	 private GiftPaymentService giftPaymentService;
 	 
 	 
 	 
@@ -46,6 +50,13 @@ public class UserController {
 	    public ResponseEntity<Page<ConnectorDTO>> getAllConnectors(Pageable pageable) {
 	        Page<ConnectorDTO> connectors = userService.getAllConnectors(pageable);
 	        return ResponseEntity.ok(connectors);
+	    }
+	 
+	 @GetMapping("/gift")
+	    public Page<GiftPaymentDTO> getGifts(
+	            @RequestParam Long receiverId, // ID của người nhận
+	            Pageable pageable) {
+	        return giftPaymentService.getGiftsForReceiver(receiverId, pageable);
 	    }
 
 }
