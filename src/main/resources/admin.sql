@@ -107,6 +107,37 @@ LOCK TABLES `bets` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `gift_payments`
+--
+
+DROP TABLE IF EXISTS `gift_payments`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `gift_payments` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `sender_id` bigint NOT NULL,
+  `receiver_id` bigint NOT NULL,
+  `gift_amount` decimal(18,2) DEFAULT '0.00',
+  `amount_received` decimal(18,2) DEFAULT '0.00',
+  `sent_date_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `sender_id` (`sender_id`),
+  KEY `receiver_id` (`receiver_id`),
+  CONSTRAINT `gift_payments_ibfk_1` FOREIGN KEY (`sender_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `gift_payments_ibfk_2` FOREIGN KEY (`receiver_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `gift_payments`
+--
+
+LOCK TABLES `gift_payments` WRITE;
+/*!40000 ALTER TABLE `gift_payments` DISABLE KEYS */;
+/*!40000 ALTER TABLE `gift_payments` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `logs`
 --
 
@@ -298,4 +329,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-06  2:47:50
+-- Dump completed on 2025-01-09 13:46:17
