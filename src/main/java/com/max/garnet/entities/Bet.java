@@ -2,12 +2,11 @@ package com.max.garnet.entities;
 
 import lombok.*;
 import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.*;
 
 @Entity
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "bets")
@@ -30,6 +29,10 @@ public class Bet {
     private BigDecimal rolling;
 
     @Column(updatable = false)
-    private Timestamp created_at;
+    private LocalDateTime created_at;
+    
+    private String gameCompany;
+    private String gameName;
+    private String roundId;
 }
 
