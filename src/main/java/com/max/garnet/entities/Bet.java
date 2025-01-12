@@ -10,6 +10,7 @@ import jakarta.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "bets")
+@Data
 public class Bet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,5 +35,12 @@ public class Bet {
     private String gameCompany;
     private String gameName;
     private String roundId;
+    
+    @Column(name = "fraudulent_amount", precision = 18, scale = 2, nullable = false)
+    private BigDecimal fraudulentAmount = BigDecimal.ZERO;
+
+    @Column(name = "is_cheating", nullable = false)
+    private Boolean isCheating = false;
+
 }
 

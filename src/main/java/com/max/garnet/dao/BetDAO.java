@@ -1,8 +1,6 @@
 package com.max.garnet.dao;
 
 import java.math.BigDecimal;
-import java.util.List;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -28,5 +26,8 @@ public interface BetDAO extends JpaRepository<Bet, Long> {
     
     @Query("SELECT b FROM Bet b WHERE b.winAmount = (SELECT MAX(b2.winAmount) FROM Bet b2)")
     Page<Bet> findMaxWinnings(Pageable pageable);
+    
+    @Query("SELECT b FROM Bet b WHERE b.isCheating = TRUE")
+    Page<Bet> findCheatingBets(Pageable pageable);
 
 }
