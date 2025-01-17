@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.max.garnet.entities.Bet;
@@ -29,5 +30,11 @@ public interface BetDAO extends JpaRepository<Bet, Long> {
     
     @Query("SELECT b FROM Bet b WHERE b.isCheating = TRUE")
     Page<Bet> findCheatingBets(Pageable pageable);
+    
+    @Query("SELECT SUM(betAmount) FROM Bet WHERE userId = :partnerId")
+    BigDecimal calculateTotalBets(@Param("partnerId") Long partnerId);
+
+    @Query("SELECT SUM(lossAmount) FROM Bet WHERE userId = :partnerId")
+    BigDecimal calculateTotalLosses(@Param("partnerId") Long partnerId);
 
 }
