@@ -91,6 +91,11 @@ CREATE TABLE `bets` (
   `win_amount` decimal(18,2) DEFAULT '0.00',
   `rolling` decimal(18,2) DEFAULT '0.00',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `game_company` varchar(100) DEFAULT NULL,
+  `game_name` varchar(100) DEFAULT NULL,
+  `round_id` varchar(100) DEFAULT NULL,
+  `fraudulent_amount` decimal(18,2) DEFAULT '0.00',
+  `is_cheating` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `bets_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
@@ -206,6 +211,12 @@ CREATE TABLE `partners` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `affiliation_id` bigint DEFAULT NULL,
+  `role` varchar(100) DEFAULT NULL,
+  `losing_percentage` decimal(5,2) DEFAULT NULL,
+  `rolling_percentage` decimal(5,2) DEFAULT NULL,
+  `betting_sl` decimal(18,2) DEFAULT NULL,
+  `betting_car` decimal(18,2) DEFAULT NULL,
+  `betting_par` decimal(18,2) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_affiliation` (`affiliation_id`),
   KEY `fk_parent` (`parent_id`),
@@ -329,4 +340,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-09 13:46:17
+-- Dump completed on 2025-01-19  8:55:17
